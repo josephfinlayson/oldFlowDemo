@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Text+Me+One);
 * {box-sizing:border-box;}
 
 body, html, div{
@@ -8,6 +9,41 @@ body, html, div{
 html,body{
   height:100%;
 }
+
+
+/*
+ * Styles for landing page
+ */
+#grabber{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:15%;
+  text-align:center;
+  font-family:Helevetica, Arial, sans-serif;
+}
+#company{
+  font-family:'Text Me One',Helevetica, Arial, sans-serif;
+  font-size:72;
+  font-weight:normal;
+  color:#123456;
+  font-weight:bold;
+}
+#tagline {
+  text-align:center;
+  font-size:32;
+  font-weight:normal;
+  color:grey;
+  margin-bottom:75px;
+}
+#toapp{
+  font-size:32;
+  background-color:#123456;
+  color:white;
+  border-radius:10px;
+  padding:15px;
+  text-decoration:none;
+}
+
 
 #container{
   width:100%;
