@@ -44,8 +44,11 @@ html,body{
   text-decoration:none;
 }
 
-
+/*
+ * app styles
+ */
 #container{
+  font-family:Helevetica, Arial, sans-serif;
   width:100%;
   min-height:100%;
   background-color:rgb(200,200,200);
