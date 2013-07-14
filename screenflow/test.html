@@ -143,11 +143,11 @@ function loadstate(qid){
 		flow["questionBeerOrder"].input = 0;
 		loadstate("infoGoodWeekend");
 	}
-	else if ((qid=="Finish")&&(flow["questionHowMuchFood"].input) + (flow["questionHowMuchFacilitator"].input) > flow["questionHowMuch"].input)
+	else if ((qid=="Finish")&&((flow["questionHowMuchFood"].input) + (flow["questionHowMuchFacilitator"].input)) > flow["questionHowMuch"].input)
 		{
-		
-		flow["questionHowMuchFood"].input = 0;
-		flow["questionHowMuchFacilitator"].input = 0;
+		flow["questionHowMuch"].input = null;
+		flow["questionHowMuchFood"].input = null;
+		flow["questionHowMuchFacilitator"].input = null;
 
 		loadstate("infoOverBudget");
 	}

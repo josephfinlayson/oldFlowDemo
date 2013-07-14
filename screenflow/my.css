@@ -31,7 +31,7 @@ body{
 	width: 600px;
 	margin: 0 auto;
 	padding: 15px;
-  margin-top:80px;
+ 	margin-top:80px;
 }
 
 #questionsbox p{
@@ -47,17 +47,17 @@ body{
 }
 
 #a1 {
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:80px;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  margin-top:50px;
 }
 
 .links{
   width: 100px;
-	font-size: 20px;
+  font-size: 20px;
   padding:15px 30px;
-	text-align: center;
-	color: #55B0CF;
+  text-align: center;
+  color: #55B0CF;
   border: 3px solid #55B0CF;
   cursor: hand;
   cursor: pointer;
@@ -119,7 +119,7 @@ list-style-type:none;
 	border: 1px solid #55B0CF;
 	line-height: 30px;
 	width: 200px;
-	margin: 50px 0 0 0;
+	margin: 0px 0 0 0;
 	padding: 0 5px 0 5px;
 }
 
