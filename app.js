@@ -1,3 +1,8 @@
+function getUserText(x,y){
+  return prompt("New text", "element");
+}
+
+
 LabelRectangle= draw2d.shape.basic.Rectangle.extend({
     
     init:function(width, height)
@@ -11,6 +16,9 @@ LabelRectangle= draw2d.shape.basic.Rectangle.extend({
       this.label.setFontSize(18);
       this.label.setFontColor("#ffffff");
       this.label.setColor("#123456");
+      this.label.onContextMenu =  function(x,y){
+        this.setText(getUserText(x,y));
+      },
       
       // add the new decoration to the connection with a position locator.
       //
@@ -20,7 +28,8 @@ LabelRectangle= draw2d.shape.basic.Rectangle.extend({
     },
     setText: function(text){
       this.label.setText(text);
-    }
+    },
+    
 });
 
 NoPortLocator = draw2d.layout.locator.PortLocator.extend({
@@ -67,7 +76,7 @@ OutPortLocator = draw2d.layout.locator.PortLocator.extend({
 var blocks = {
 
   "decision-manual": function (canvas,x,y){ // This should be an extension, but I'm too tired to care
-    var d = new LabelRectangle(100,100);
+    var d = new LabelRectangle(200,75);
     d.createPort("output",new YesPortLocator());
     d.createPort("output",new NoPortLocator());
     d.createPort("input",new InPortLocator());
