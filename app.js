@@ -1,5 +1,5 @@
-function getUserText(x,y){
-  return prompt("New text", "element");
+function getUserText(current, x,y){
+  return prompt("New text", current);
 }
 
 
@@ -17,7 +17,7 @@ LabelRectangle= draw2d.shape.basic.Rectangle.extend({
       this.label.setFontColor("#ffffff");
       this.label.setColor("#123456");
       this.label.onContextMenu =  function(x,y){
-        this.setText(getUserText(x,y));
+        this.setText(getUserText(this.getText(),x,y));
       },
       
       // add the new decoration to the connection with a position locator.
