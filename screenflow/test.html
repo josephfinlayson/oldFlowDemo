@@ -25,14 +25,14 @@ var flow = {
   infoWhoops : {
   	question: "Whoops! Check meetups.com, google to make sure nothing is happening in your city!",
   	options: [
-    	{option:"I will do so", target:"questionDate"},
+    	{option:"I will do so", target:"questionVenue"},
   	]
   },
 
   infoDoDate : {
-  	question: "you should probably do so",
+  	question: "Pick one!",
   	options: [
-  	{option:"I will do so"}
+  	{option:"I will do so", target:"questionVenue"}
   	]
   },
   questionVenue : {
@@ -42,6 +42,14 @@ var flow = {
     	{option:"no", target:"infoGetVenue"},
   ]
 },
+  
+ infoGetVenue : {
+  	question: "Find one!",
+  	   options: [
+    	{option:"Sure thing", target:"questionCash"},
+		  ]
+},
+
   questionCash : {
   	question : "Do you have the cash to fund your event",
 	  	options: [
@@ -61,48 +69,55 @@ infoGetSome : {
 infoGetMore:{
 	question: "Get more cash",
 	options : [
-	{option:"I will do so", target : "questionHowMuch"},
-]},
+	{option:"Uh... OK", target : "questionHowMuch"},
+]
+},
+
+infoOverBudget: {
+	question: "You're over budget!",
+	options : [
+		{option:"I will spend less!", target : "questionHowMuch"},
+]	
+},
 
 questionHowMuch : {
 	question : "How much cash do you actually have?",	
 	input : null, 
-  	target: "questionSpeaker",
-},
-
-questionSpeaker : {
-	question : "So, got some speakers - are they good?",
-	options : [
-	{option: "they are pretty good", target:"questionBeerOrder"},
-	{option: "Whoops, people have to speak?", target:"infoGetSpeaker"},
-	]
+  	target: "questionBeerOrder",
 },
 
 questionBeerOrder : {
 	question : "How much beer did you order",
 	dropdown : 50,
 	target: "questionHowMuchFood",
+	input: "",
+},
+
+infoGoodWeekend : {
+	question : "Sounds like it's going to be a smashing weekend!",
+	options : [
+		{option:"Uh... OK", target : "questionHowMuchFood"},
+	]
 },
 
 questionHowMuchFood : {
-	question : "How much did you spend on food?",
+	question : "How much will you spend on food?",
 	input : null,
 	target : "questionHowMuchFacilitator",
 },
 
 questionHowMuchFacilitator : {
-	question : "How much did you spend on the facilitator?",
+	question : "How much did you spend on facilitators",
 	input : null,
 	target : "Finish",
 },
 
 Finish : {
 	question : "Congrats, now it's time to get some participants",
-	type : "end",
+	options : [
+		{option:"Wahay - I want to do this again", target : "questionDate"},
+	]
 },
-
-
-
 
 
 // venue
@@ -124,8 +139,19 @@ Finish : {
 };
 
 function loadstate(qid){
-	
-	if(flow[qid].options){
+	if ((qid=="questionHowMuchFood")&&(flow["questionBeerOrder"].input>20)){
+		flow["questionBeerOrder"].input = 0;
+		loadstate("infoGoodWeekend");
+	}
+	else if ((qid=="Finish")&&(flow["questionHowMuchFood"].input) + (flow["questionHowMuchFacilitator"].input) > flow["questionHowMuch"].input)
+		{
+		
+		flow["questionHowMuchFood"].input = 0;
+		flow["questionHowMuchFacilitator"].input = 0;
+
+		loadstate("infoOverBudget");
+	}
+	else if(flow[qid].options){
 		$("#questionsbox").html("<p>"+flow[qid].question+"</p>");
 		$("#a1").html("");
 	    flow[qid].options.forEach(function(element, index, arr){
@@ -137,7 +163,8 @@ function loadstate(qid){
 		    	});
 	    	$("#a1").append(link);
 	    });
-	    }else if((flow[qid].input)===null) {
+	    }
+	    else if((flow[qid].input)===null) {
 		$("#questionsbox").html("<p>"+flow[qid].question+"</p>");
 		$("#a1").html("");
 				var input = $("<input>")
@@ -170,7 +197,9 @@ function loadstate(qid){
 			    .html(element));
 			});
 			$("#submit").click(function(){
-	    			loadstate(flow[qid].target);	
+	    			flow[qid].input = $('#selector option:selected').val();
+	    			console.log(flow[qid].input);
+	    			loadstate(flow[qid].target);
 	    		});
 
 		}
