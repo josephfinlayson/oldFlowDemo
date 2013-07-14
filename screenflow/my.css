@@ -4,7 +4,7 @@
 	width: 900px;
 	-webkit-border-radius: 2px;
 	        border-radius: 2px;
-}
+} 
 
 
 #container{
@@ -124,3 +124,20 @@ button{
 	color: #55B0CF;
 }
 
+#selector{
+   background:transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 2px solid #55B0CF;
+   border-radius: 0;
+   height: 34px;
+   }
+
+.links{
+cursor: hand;
+cursor: pointer;
+}	
+
+}

@@ -10,11 +10,11 @@
 var flow = {
   questionDate : {
     question: "Have you organised a date for your Startup Weekend",
-    input: null,
-    // options: [
-    // 	{option:"yes", target:"questionClash"},
-    // 	{option:"no", target:"infoDoDate"}
-    // ]
+    dropdown: 50,
+    options: [
+    	{option:"yes", target:"questionClash"},
+    	{option:"no", target:"infoDoDate"}
+    ]
   },
   questionClash : {
   	question: "Does it clash with other tech events?",
