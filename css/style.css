@@ -48,11 +48,10 @@ html,body{
  * app styles
  */
 #container{
-  font-family:Helevetica, Arial, sans-serif;
+  //font-family:Helevetica, Arial, sans-serif;
   width:100%;
   min-height:100%;
   background-color:rgb(200,200,200);
-  padding: 15px;
 }
 
 .title{
