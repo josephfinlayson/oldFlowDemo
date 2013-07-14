@@ -77,11 +77,11 @@ var blocks = {
 
   "decision-manual": function (canvas,x,y){ // This should be an extension, but I'm too tired to care
     var d = new LabelRectangle(200,75);
-    d.createPort("output",new YesPortLocator());
-    d.createPort("output",new NoPortLocator());
+    d.createPort("output",new YesPortLocator()).addCssClass("yport");
+    d.createPort("output",new NoPortLocator()).addCssClass("nport");
     d.createPort("input",new InPortLocator());
     d.getPorts().each(function(i,p){
-      p.setCssClass('port')
+      p.addCssClass('port')
     });
     d.setText("<decision-manual>");
     canvas.addFigure( d,x,y);
