@@ -67,18 +67,23 @@ html,body{
   stroke: #123456;
   stroke-width: 2;
   fill-opacity:1;
-  
+}
+.nport{
+  fill:#ff0000;
+}
+.yport{
+  fill:#00ff00;
 }
 
-
 #ctrlbar{
-  position:absolute;
+  position:fixed;
   width:100%;
   left:0px;
   top:0px;
   height:40px;
   background-color: #444;
   padding:10px;
+  z-index:1000;
 }
 
 #leftbar{float:left}
@@ -104,9 +109,17 @@ html,body{
   color:white;
   background-color:green;
 }
+.exec{
+  color:white;
+  background-color:red;
+}
+.export{
+  color:white;
+  background-color:black;
+}
 
 #hintbox{
-  position:absolute;
+  position:fixed;
   color:white;
   bottom:0px;
   right:50px;
