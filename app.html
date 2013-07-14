@@ -396,6 +396,59 @@
 
   </head>
 	<body>
+    <div id="ctrlbar">
+      <div id="leftbar">
+        <a id="select-start" class="btn choice" onclick="selectBlock('start');">start</a>
+        <a id="select-end" class="btn choice"  onclick="selectBlock('end');">end</a>
+        <a id="select-decision-manual" class="btn choice" onclick="selectBlock('decision-manual');">decision (manual)</a>
+        <a id="select-decision-auto" class="btn choice" onclick="selectBlock('decision-auto');">decision (auto)</a>
+        <a id="select-info" class="btn choice" onclick="selectBlock('info');">info</a>
+        <a id="select-input" class="btn choice" onclick="selectBlock('input');">input</a>
+      </div>
+      <div id="rightbar">
+        <a id="select-start" class="btn save">save</a>
+      </div>
+    </div>
+
     <div id="container" style="-webkit-tap-highlight-color: rgba(0,0,0,0);"></div>
-      </body>
+
+    <div id="hintbox">
+      <div id="puller">Hide Hints</div>
+      <div id="hints">
+        <p><em>background:</em></p>
+        <p><span class="keys">Doubleclick</span> insert new element of selected type</p>
+        <p><span class="keys">Del</span> delete currently seleted element</p>
+      </div>
+    </div>
+
+    <script>
+$(function(){
+  /*
+   * Show/hide hints
+   */ 
+  $("#puller").click(function(){
+    if($("#hints").is(":visible")){//hide it
+      $("#hints").hide();
+      $("#puller").text("Show Hints");
+    }else{//show it
+      $("#hints").show();
+      $("#puller").text("Hide Hints");
+    }
+  });
+  
+  window.selectBlock = function(name){
+    window.selectedBlock = name;
+    $("#leftbar a").each(function(i,e){
+      $(e).removeClass("selected");
+      $(e).addClass("choice");
+    });
+    $("#select-"+name).removeClass("choice");
+    $("#select-"+name).addClass("selected");
+  }
+
+  selectBlock("start");
+  
+});
+    </script>
+  </body>
 </html>

@@ -17,6 +17,9 @@ LabelRectangle= draw2d.shape.basic.Rectangle.extend({
       this.addFigure(this.label, new draw2d.layout.locator.CenterLocator(this));
       
       this.label.installEditor(new draw2d.ui.LabelInplaceEditor());
+    },
+    setText: function(text){
+      this.label.setText(text);
     }
 });
 
@@ -51,19 +54,70 @@ InPortLocator = draw2d.layout.locator.PortLocator.extend({
   }
 });
 
-function makeYN(canvas,x,y){ // This should be an extension, but I'm too tired to care
-  var d = new LabelRectangle(100,100);
-  d.createPort("output",new YesPortLocator());
-  d.createPort("output",new NoPortLocator());
-  d.createPort("input",new InPortLocator());
-  d.getPorts().each(function(i,p){
-    p.setCssClass('port')
-  });
-  $(d).dblclick(function(e){
-    //todo: delete d
-    e.stopPropagation();
-  });
-  canvas.addFigure( d,x,y);
+OutPortLocator = draw2d.layout.locator.PortLocator.extend({
+  init:function( ){
+    this._super();
+  },    
+  relocate:function(index, port){
+    var p = port.getParent();
+    port.setPosition(p.getWidth()/2, p.getHeight());
+  }
+});
+
+var blocks = {
+
+  "decision-manual": function (canvas,x,y){ // This should be an extension, but I'm too tired to care
+    var d = new LabelRectangle(100,100);
+    d.createPort("output",new YesPortLocator());
+    d.createPort("output",new NoPortLocator());
+    d.createPort("input",new InPortLocator());
+    d.getPorts().each(function(i,p){
+      p.setCssClass('port')
+    });
+    d.setText("<decision-manual>");
+    canvas.addFigure( d,x,y);
+  },
+  "decision-auto":null,
+  info:function (canvas,x,y){
+    var d = new LabelRectangle(100,50);
+    d.createPort("input", new InPortLocator());
+    d.createPort("output", new OutPortLocator());
+    d.getPorts().each(function(i,p){
+      p.setCssClass('port')
+    });
+    d.setText("<info>");
+    canvas.addFigure( d,x,y);
+  },
+  input:function (canvas,x,y){
+    var d = new LabelRectangle(100,50);
+    d.createPort("input", new InPortLocator());
+    d.createPort("output", new OutPortLocator());
+    d.getPorts().each(function(i,p){
+      p.setCssClass('port')
+    });
+    d.setText("<input>");
+    canvas.addFigure( d,x,y);
+  },
+  end:function (canvas,x,y){
+    var d = new LabelRectangle(100,50);
+    d.createPort("input", new InPortLocator());
+    d.getPorts().each(function(i,p){
+      p.setCssClass('port')
+    });
+    d.setText("<end>");
+    canvas.addFigure( d,x,y);
+  },
+  
+
+  start: function (canvas,x,y){
+    var d = new LabelRectangle(100,50);
+    d.createPort("output", new OutPortLocator());
+    d.getPorts().each(function(i,p){
+      p.setCssClass('port')
+    });
+    d.setText("<start>");
+    canvas.addFigure( d,x,y);
+  }
 }
 
 $(window).load(function () {
@@ -72,12 +126,10 @@ $(window).load(function () {
   var canvas = new draw2d.Canvas("container");
 
   $("#container").dblclick(function(e){
-    makeYN(canvas, e.clientX, e.clientY);
+    blocks[window.selectedBlock](canvas, e.clientX, e.clientY);
     e.stopPropagation();
   });
 
-  makeYN(canvas, 300, 300);
+  blocks["start"](canvas, 50, 50);
 
-  var msg = new draw2d.shape.note.PostIt("Add input and output ports at any position of the \nshape via generic API calls.");
-  canvas.addFigure(msg, 20,20);
-});
+  });

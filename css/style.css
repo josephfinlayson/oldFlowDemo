@@ -7,6 +7,7 @@ body, html, div{
 }
 
 html,body{
+  font-family:Helevetica, Arial, sans-serif;
   height:100%;
 }
 
@@ -48,17 +49,11 @@ html,body{
  * app styles
  */
 #container{
-  //font-family:Helevetica, Arial, sans-serif;
   width:100%;
   min-height:100%;
+  height:3500px;
   background-color:white;
-}
-
-.title{
-  padding:10px;
-  cursor:move;
-  background-color:blue;
-  color:white;
+  margin-top:40px;
 }
 
 .item{
@@ -75,22 +70,64 @@ html,body{
   
 }
 
-.connect{
-  height: 10px;
-  width:20px;
+
+#ctrlbar{
   position:absolute;
-  border-bottom-left-radius:10px;
-  border-bottom-right-radius:10px;
-  bottom:-10px;
-  cursor: pointer;
+  width:100%;
+  left:0px;
+  top:0px;
+  height:40px;
+  background-color: #444;
+  padding:10px;
 }
 
-.connectNo {
-  left:0px;
-  background-color:red;
-}    
-.connectYes {
-  right:0px;
+#leftbar{float:left}
+#rightbar{float:right}
+
+.btn{
+  padding:5px;
+  border-radius:5px; 
+  margin:0 5px;
+  cursor:pointer;
+}
+ 
+.choice{
+  color:white;
+  background-color:#123456;
+}
+
+.selected{
+  color:#123456;
+  background-color:white;
+}
+.save{
+  color:white;
   background-color:green;
 }
 
+#hintbox{
+  position:absolute;
+  color:white;
+  bottom:0px;
+  right:50px;
+  width:300px;
+}
+#hintbox #puller{
+  text-align:center;
+  padding:5px;
+  font-size:small;
+  background:#222;
+  cursor:pointer;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+}
+#hintbox #hints{
+  background-color:rgba(0,0,0,0.7); 
+  font-size:small;
+  padding:10px;
+}
+.keys{
+  background-color:black;
+  border-radius:3px;
+  padding:3px;
+}
