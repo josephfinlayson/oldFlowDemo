@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="my.css">
+
+<title>SW setup</title>
+<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+<script>
+
+var flow = {
+  first : {
+    question: "What is the color of your pet?",
+    options: [
+    	{option:"yes", target:"questionHeight"},
+    	{option:"no", target:"questionWeight"}
+    ]
+  },
+  questionWeight : {
+  	question: "are you above 100lbs?",
+  	options: [
+    	{option:"yes", target:"endfat"},
+    	{option:"no", target:"endthin"}
+  	]
+  },
+  questionHeight : {
+  	question: "are you above 2m?",
+  	options: [
+    	{option:"yes", target:"endtall"},
+    	{option:"no", target:"endnorm"}
+  	]
+  },
+  endfat: {end: "Fat"},
+  endthin: {end: "thin"},
+  endtall: {end: "tall"},
+  endnorm: {end: "normal"}
+};
+
+function loadstate(qid){
+	if(flow[qid].options){
+		$("#questionsbox").html("<p>"+flow[qid].question+"</p>");
+		$("#a1").html("");
+	    flow[qid].options.forEach(function(element, index, arr){
+	    	var link = $("<a>")
+		    	.addClass('links')
+		    	.text(element.option)
+		    	.click(function(){
+		    		loadstate(element.target);
+		    	});
+	    	$("#a1").append($("<li>").append(link));
+	    });
+	    
+	}else{
+        $("#questionsbox").html("<p>"+flow[qid].end+"</p>");
+        $("#a1").html("");
+	}
+}
+
+$(document).ready(function(){
+  loadstate("first");
+});
+
+</script>
+</head>
+
+<body>
+<div id = "container">	
+<div class = "navbar"> 
+	<div><img id = "logo" src="img/logo.png"></div>
+</div>
+<div> <img id ="stripe" src = "img/stripe.png"> </div>
+
+<div id= "questionsbox">
+	<p>Do you have a date for the Startup weekend?</p>
+</div>
+<div id="answers">
+	<ul id ="a1">
+	</ul>
+</div>
+<div id="footer">
+	<ul class="icons">
+		<li><p>Edit</p><img src="img/edit.png"></li>
+		<li><p>Print</p><img src="img/printer.png"></li>
+		<li><p>Start Again</p><img src="img/startover.png"></li>
+</div>
+
+
+
+</div> <!-- container -->
+</body>
+
+</html>
