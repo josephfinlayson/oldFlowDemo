@@ -9,7 +9,7 @@
 
 var flow = {
   questionDate : {
-    question: "Do you organised a date for your Startup Weekend",
+    question: "Have you organised a date for your Startup Weekend",
     options: [
     	{option:"yes", target:"questionClash"},
     	{option:"no", target:"infoDoDate"}
@@ -135,7 +135,7 @@ function loadstate(qid){
 		    	.click(function(){
 		    		loadstate(element.target);
 		    	});
-	    	$("#a1").append($("<li>").append(link));
+	    	$("#a1").append(link);
 	    });
 	    }else if((flow[qid].input)===null) {
 		$("#questionsbox").html("<p>"+flow[qid].question+"</p>");
@@ -190,22 +190,23 @@ $(document).ready(function(){
 <body>
 <div id = "container">	
 <div class = "navbar"> 
-	<div><img id = "logo" src="img/logo.png"></div>
+	<img id = "logo" src="img/logo.png"></img>
 </div>
-<div> <img id ="stripe" src = "img/stripe.png"> </div>
 
 <div id= "questionsbox">
-	<p>Do you have a date for the Startup weekend?</p>
 </div>
 <div id="answers">
-	<ul id ="a1">
+	<div id ="a1"></div>
 	</div>
 </div>
 <div id="footer">
+  <div id="options">
 	<ul class="icons">
 		<li><p>Edit</p><img src="img/edit.png"></li>
 		<li><p>Print</p><img src="img/printer.png"></li>
 		<li><p>Start Again</p><img src="img/startover.png"></li>
+    </ul>
+    </div>
 </div>
 
 
