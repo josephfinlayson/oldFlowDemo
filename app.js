@@ -1,65 +1,83 @@
+LabelRectangle= draw2d.shape.basic.Rectangle.extend({
+    
+    init:function(width, height)
+    {
+      this._super(width, height);
+      this.setCssClass('item');
+      
+      // Create any Draw2D figure as decoration for the connection
+      //
+      this.label = new draw2d.shape.basic.Label("<question>");
+      this.label.setFontSize(18);
+      this.label.setFontColor("#ffffff");
+      this.label.setColor("#123456");
+      
+      // add the new decoration to the connection with a position locator.
+      //
+      this.addFigure(this.label, new draw2d.layout.locator.CenterLocator(this));
+      
+      this.label.installEditor(new draw2d.ui.LabelInplaceEditor());
+    }
+});
+
+NoPortLocator = draw2d.layout.locator.PortLocator.extend({
+  init:function( ){
+      this._super();
+    },    
+  relocate:function(index, port){
+    var p= port.getParent();
+    port.setPosition( 20, p.getHeight());
+  }
+});
+
+
+YesPortLocator = draw2d.layout.locator.PortLocator.extend({
+  init:function( ){
+    this._super();
+  },    
+  relocate:function(index, port){
+    var p = port.getParent();
+    port.setPosition(p.getWidth()-20, p.getHeight());
+  }
+});
+
+InPortLocator = draw2d.layout.locator.PortLocator.extend({
+  init:function( ){
+    this._super();
+  },    
+  relocate:function(index, port){
+    var p = port.getParent();
+    port.setPosition(p.getWidth()/2, 0);
+  }
+});
+
+function makeYN(canvas,x,y){ // This should be an extension, but I'm too tired to care
+  var d = new LabelRectangle(100,100);
+  d.createPort("output",new YesPortLocator());
+  d.createPort("output",new NoPortLocator());
+  d.createPort("input",new InPortLocator());
+  d.getPorts().each(function(i,p){
+    p.setCssClass('port')
+  });
+  $(d).dblclick(function(e){
+    //todo: delete d
+    e.stopPropagation();
+  });
+  canvas.addFigure( d,x,y);
+}
+
 $(window).load(function () {
 
   console.log(draw2d);
   var canvas = new draw2d.Canvas("container");
 
-  canvas.addFigure( new draw2d.shape.node.Start(), 80,80);
-  canvas.addFigure( new draw2d.shape.node.Start(), 50,50);
+  $("#container").dblclick(function(e){
+    makeYN(canvas, e.clientX, e.clientY);
+    e.stopPropagation();
+  });
 
-  canvas.addFigure( new draw2d.shape.node.End(), 150,150);
-  canvas.addFigure( new draw2d.shape.node.End(), 350,250);
+  makeYN(canvas, 300, 300);
 
-
-
- MyInputPortLocator = draw2d.layout.locator.PortLocator.extend({
-        init:function( ){
-          this._super();
-        },    
-        relocate:function(index, figure){
-            this.applyConsiderRotation(figure, figure.getParent().getWidth()/2, 0);
-        }
-    });
-
-
-    MyOutputPortLocator = draw2d.layout.locator.PortLocator.extend({
-        init:function( ){
-          this._super();
-        },    
-        relocate:function(index, figure){
-            var p = figure.getParent();
-
-            this.applyConsiderRotation(figure, p.getWidth()/2, p.getHeight());
-        }
-    });
-
-
-  // Add input and output ports to any shape via generic API calls
-  // and custom locators
-  //
-  window.d = new draw2d.shape.basic.Rectangle();
-//  canvas.addFigure( d,100,100);
-
-  window.inputLocator = new MyInputPortLocator();
-  window.outputLocator = new MyOutputPortLocator();
-
-  d.createPort("input",inputLocator);
-  d.createPort("output",outputLocator);
-  
-  canvas.addFigure( d,100,100);
-  
-  // add input and output ports via genric API calls and DEFAULT
-  // locators. The default locator arange input on the left and ouput on the right
-  // side of the shape
-  //
-  var d2 = new draw2d.shape.basic.Diamond();
-  canvas.addFigure( d2,300,150);
-
-  d2.createPort("input");
-  d2.createPort("output");
-  
-  ///////////////////////////////////////////////////////////////////// 
-  // JUST ADD SOME DOCU ELEMENTS ON THE SCREEN
-  ///////////////////////////////////////////////////////////////////// 
   var msg = new draw2d.shape.note.PostIt("Add input and output ports at any position of the \nshape via generic API calls.");
   canvas.addFigure(msg, 20,20);
 });

@@ -51,7 +51,7 @@ html,body{
   //font-family:Helevetica, Arial, sans-serif;
   width:100%;
   min-height:100%;
-  background-color:rgb(200,200,200);
+  background-color:white;
 }
 
 .title{
@@ -62,13 +62,17 @@ html,body{
 }
 
 .item{
-  background-color:white;
-  width:100px;
-  height:100px;
-  margin:2px;
-  text-align:center;
-  padding:7px;
-  position:absolute;
+  fill: #123456;
+  stroke: #123456;
+  stroke-width: 1;
+  fill-opacity:1;
+}
+.port{
+  fill:#ffffff;
+  stroke: #123456;
+  stroke-width: 2;
+  fill-opacity:1;
+  
 }
 
 .connect{
