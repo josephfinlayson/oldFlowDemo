@@ -24,6 +24,24 @@ Possible future nodes:
  * dynamic-choice (silent choice made based on accumulated data)
  * dynamic-inform (contents depends on accumulated data)
 
+Types of input
+--------------
+
+ * number
+ * unique (one amongst many)
+ * multi  (many amongst many)
+ * text (text field)
+ * date
+
+Future:
+ * file upload
+ * credit card
+ * color
+ * address
+ * telephone
+ * time
+ * month, week, day
+ * password
 
 Implementation
 --------------
@@ -68,7 +86,8 @@ This also allows separate dispatchers for different applications.
 
 Future
 ------
-
- * Node callbacks
- * Dynamic nodes
- * Flow validators
+ * Input validation
+ * Node callbacks (nodes can trigger actions elsewhere)
+ * Dynamic nodes (nodes depend on accumulated data)
+ * Flow validators (Is this a valid flow?)
+ * Flow Data validators (have I collected this data from each branch?)
