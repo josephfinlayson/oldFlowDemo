@@ -34,6 +34,7 @@ Types of input
  * date
 
 Future:
+ * poly - multiple inputs (creates a form)
  * file upload
  * credit card
  * color
