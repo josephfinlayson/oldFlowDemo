@@ -92,3 +92,15 @@ Future
  * Dynamic nodes (nodes depend on accumulated data)
  * Flow validators (Is this a valid flow?)
  * Flow Data validators (have I collected this data from each branch?)
+ * Questionnaire links (ie, what the end user receives)
+ * Session resume (going through the process, pause + exit, return to same position)
+ * Embed questionnaire into a website (eg NHS direct, Dell troubleshooting)
+ * Subflows that can be edited separately (dell devices, etc...)
+
+
+Marketing 
+---------
+
+ * BQSs/ISO9001 compliance
+ * Traceability (Science, Intelectual property, documentation)
+ * 
