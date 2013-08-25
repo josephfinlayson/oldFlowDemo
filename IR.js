@@ -9,6 +9,18 @@
  *
  */
 
+/*For non-binary choices each option is presented as a multidimensionally, with a unique ID for the
+ option, as well as the option text, this allows us to store the data
+
+      {text: "A slippery water dweller", unique:"slipdweller", target:"fish"},
+      {text: "A furry quadruped", unique:"furquadped", target:"furry-quad"},
+      {text: "A more exotic creature", unique:"exoccreat", target:"exotic"}
+
+Then we can start building up an array of stored values as a second object such that
+
+  "Pets"+uniqid.pet-kind.slipdweller = True / * or a string or whatever - this would be the thing sent to the callback
+
+ */
 
 var workflow = {
   /*
@@ -30,7 +42,7 @@ var workflow = {
      * In the future, individual nodes may be capable of triggering a callback.
      *
      * If this value is not specified, the application will save the data for
-     * it to be collected by the application owner at a later date.
+     * it to be collected by the application owner at a later date.-
      */
     callback_url: "http://example.com/form_callback"
   },

@@ -1,0 +1,147 @@
+*{box-sizing:border-box;}
+
+body,html{padding:0px;margin:0px;height:100%;width:100%}
+
+body{
+	font-family: sans-serif;
+	background-color: #5E5E5E;
+}
+
+.navbar {
+	background-color: #55B0CF;
+	height: 200px;
+	width: 100%;
+} 
+
+
+#container{
+	width: 100%;
+  background:white;
+  padding-bottom:40px;
+}
+#logo {
+	float: right;
+  height:200px;
+}
+
+#questionsbox
+{
+	background-color: #55B0CF;
+	height: 250px;
+	width: 600px;
+	margin: 0 auto;
+	padding: 15px;
+ 	margin-top:80px;
+}
+
+#questionsbox p{
+	font-size: 40px;
+	color: white;
+	text-align: center;
+}
+
+#answers{
+	margin: 10px auto;
+	height: 50px;
+	width: 350px;
+}
+
+#a1 {
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  margin-top:50px;
+}
+
+.links{
+  width: 100px;
+  font-size: 20px;
+  padding:15px 30px;
+  text-align: center;
+  color: #55B0CF;
+  border: 3px solid #55B0CF;
+  cursor: hand;
+  cursor: pointer;
+  margin-left:80px;
+}	
+
+#a2 {
+	border: 3px solid #55B0CF;
+	height: 50px;
+	width: 100px;
+	float: right;
+	color: #55B0CF;
+	text-align: center;
+	}
+
+#footer {
+	background-color: #5E5E5E;
+	height: 150px;
+	width:100%;
+  bottom:0px;
+	}
+
+.icons{
+	margin: 0 auto;
+}
+#options{
+  text-align:center;
+  width :500px;
+  margin:0 auto;
+}
+
+
+.icons li
+{
+list-style-type:none;
+	display: inline;
+	float: left;
+	width: 100px;
+	color: white;
+	text-align: center;
+	padding: 1px 0;
+	font-size: 20px;
+	margin: 15px 0 0 15px;
+	/*margin: 0 15px 0 15px;
+*/
+}
+
+.icons p{
+	padding: 0;
+	margin: 0;
+}
+.icons img{
+	clear: both;
+	height: 100%;
+	width: 100%;
+}
+
+#numberinput{
+	border: 1px solid #55B0CF;
+	line-height: 30px;
+	width: 200px;
+	margin: 0px 0 0 0;
+	padding: 0 5px 0 5px;
+}
+
+button{
+	clear:both;
+	display:block;
+	margin: 10px 0;
+	border: 2px solid #55B0CF;
+	padding: 5px;
+	background-color: white;
+	color: #55B0CF;
+}
+
+#selector{
+   background:transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 2px solid #55B0CF;
+   border-radius: 0;
+   height: 34px;
+   }
+
+
