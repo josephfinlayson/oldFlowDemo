@@ -171,7 +171,7 @@ var workflow = {
       choices:["Prehensile Tail", "Wings", "Scales", "Claws", "Flat tail"]
     },
     target: "pet-name"
-  }
+  },
 
   /*
    * Open ended text field. Future may support custom validators for things 
@@ -194,7 +194,7 @@ var workflow = {
       maxwords: 12,
     },
     target: "when-met"
-  }
+  },
   
   /*
    * Date input
@@ -209,11 +209,11 @@ var workflow = {
       latest: "2100-10-10"
     },
     target: "fini"
-  }
+  },
 
   "fini": {
     type: "end",
     text: "Thankyou for completing our survey!"
   }
-}
+};
 
