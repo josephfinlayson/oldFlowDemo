@@ -9,7 +9,7 @@
 
 var flow = {
   questionDate : {
-    question: "Have you organised a date for your Startup Weekend",
+    question: "Have you organised a date for your Startup Weekend?",
     options: [
     	{option:"yes", target:"questionClash"},
     	{option:"no", target:"infoDoDate"}
@@ -36,7 +36,7 @@ var flow = {
   	]
   },
   questionVenue : {
-  	question: "Do you have a venue",
+  	question: "Do you have a venue?",
   	   options: [
     	{option:"yes", target:"questionCash"},
     	{option:"no", target:"infoGetVenue"},
@@ -51,7 +51,7 @@ var flow = {
 },
 
   questionCash : {
-  	question : "Do you have the cash to fund your event",
+  	question : "Do you have the cash to fund your event?",
 	  	options: [
 	  	    {option:"yes", target:"infoGetMore"},
 	    	{option:"no", target:"infoGetSome"},
@@ -87,7 +87,7 @@ questionHowMuch : {
 },
 
 questionBeerOrder : {
-	question : "How much beer did you order",
+	question : "How much beer did you order per person?",
 	dropdown : 50,
 	target: "questionHowMuchFood",
 	input: "",
@@ -107,7 +107,7 @@ questionHowMuchFood : {
 },
 
 questionHowMuchFacilitator : {
-	question : "How much did you spend on facilitators",
+	question : "How much did you spend on facilitators?",
 	input : null,
 	target : "Finish",
 },
@@ -115,7 +115,7 @@ questionHowMuchFacilitator : {
 Finish : {
 	question : "Congrats, now it's time to get some participants",
 	options : [
-		{option:"Wahay - I want to do this again", target : "questionDate"},
+		{option:"Wahay - again?", target : "questionDate"},
 	]
 },
 
