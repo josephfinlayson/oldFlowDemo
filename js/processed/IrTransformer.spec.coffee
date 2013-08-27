@@ -18,10 +18,11 @@ describe "IR transformer", ->
 
   describe "For all types of nodes", ->
     it "Will render the node title in the '.stage-title' element", ->
-      node = {type: "info", title: "TEST TITLE"}
+      node = {type: "foo", title: "TEST TITLE"}
       expect( $(Processed.NodeToHtml(node, null, null)).find(".stage-title").text() ).toEqual("TEST TITLE")
 
-    it "And render the node text in the '.stage-text' element", ->
+    it "Will render the node text in the '.stage-text' element", ->
       node = {type: "foo", text: "TEST TEXT"}
       expect( $(Processed.NodeToHtml(node, null, null)).find(".stage-text").text() ).toEqual("TEST TEXT")
 
+   

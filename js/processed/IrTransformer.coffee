@@ -24,14 +24,14 @@ template = """
 
 infoHandler = (node, accuData, workflow) ->
   elem = $('<div>').html(template)
-  elem.find(".stage-title").text(node.title)
-  elem.find(".stage-text").text(node.text)
+  if node.title? elem.find(".stage-title").text(node.title)
+  if node.text? elem.find(".stage-text").text(node.text)
   elem
   
 
 
 handlers = {
-  "info": infoHandler
+  "inform": infoHandler
     
 }
 
@@ -45,8 +45,8 @@ Processed.NodeToHtml = (node, accuData, workflow) ->
     elem = handlers[node.type](node, accuData, workflow)
   
   else if node.type?
-    console.error("Treating unknown node type '%s' as 'info': %o", node.type, node)
-    elem = handlers["info"](node, accuData, workflow)
+    console.error("Treating unknown node type '%s' as 'inform': %o", node.type, node)
+    elem = handlers["inform"](node, accuData, workflow)
   
   else
     elem = $('<div>').html(template)
