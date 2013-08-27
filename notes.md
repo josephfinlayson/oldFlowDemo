@@ -47,6 +47,14 @@ Future:
 Implementation
 --------------
 
+### Craftmanship/Code standard
+
+Code should be tested and continually integrated. Code doesn't join mainline 
+without passing tests and corresponding unit tests. 
+
+Functional (side-effect free) by default to improve testability. Anything that 
+created displayable content returns the containing element.
+
 ### Main objects
 
  - **Node** A node.
