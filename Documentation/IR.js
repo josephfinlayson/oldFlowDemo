@@ -67,16 +67,21 @@ var workflow = {
      * All nodes have a 'type' variable.
      */
     type: "binary",
+
     /*
-     * The 'text' variable is what will be displayed to the user to prompt for 
-     * input. 
+     * The title of the node. Will be displayed to the user as the stage's name
+     */
+    title: "Do you have any pets?",
+    /*
+     * In addition to the title, the 'text' variable is what will be displayed 
+     * to the user to prompt for input. 
      * 
      * This field does not currently support any markup. It is undecided 
      * whether this will support html, markdown or another markup in the 
      * future, and how this will interact with the flowchart representation of 
      * the workflow.
      */
-    text: "Do you have any pets?",
+    text: "We're conducting a survey about pets.",
     /*
      * The 'yes' and 'no' choice can simply be a node id to target. This will 
      * allow default text values for the choices ('Yes' and 'No'). Target is 
