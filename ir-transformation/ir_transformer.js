@@ -79,10 +79,9 @@ var workflow = {
     text: "Do you have any pets?",
     /*
      * The 'yes' and 'no' choice can simply be a node id to target. This will 
-     * allow default text values for the choices ('Yes' and 'No'). Target is 
-     always contained within the target key 
+     * allow default text values for the choices ('Yes' and 'No').
      */
-    yes: {target: "inform-adorable"},
+    yes: "inform-adorable",
     /*
      * The yes and no choices can also override the default text by providing
      * an object as follows:
@@ -229,4 +228,6 @@ var workflow = {
     text: "Thankyou for completing our survey!"
   }
 };
+
+
 

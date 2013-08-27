@@ -1,16 +1,14 @@
-
-
-var workflow = {
+var flow = {
   _config: {
     start: "pet-ownership",
     callback_url: "http://example.com/form_callback"
   },
 
-  "pet-ownership?": {
+  "pet-ownership": {
     type: "binary",
     text: "Do you have any pets?",
-    yes: "inform-adorable",
-    no: { text: "No :(", target: "end-getsome" }
+    yes: {target: "inform-adorable"},
+    no: {text: "No :(", target: "end-getsome"}
   },
 
   "end-getsome": {
@@ -95,5 +93,3 @@ var workflow = {
     text: "Thankyou for completing our survey!"
   }
 };
-
-
