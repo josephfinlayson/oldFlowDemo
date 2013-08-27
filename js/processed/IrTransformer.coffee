@@ -22,6 +22,29 @@ template = """
 
 """
 
+
+choiceHandler = (node, accuData, workflow, callback) ->
+  elem = $('<div>').html(template)
+  
+  if node.title? 
+    elem.find(".stage-title").text(node.title)
+  
+  if node.text? 
+    elem.find(".stage-text").text(node.text)
+  
+  for choice in node.choices
+    elem.find(".stage-choices").append(
+      $('<a>')
+        .addClass("target")
+        .text(choice.text)
+        .click(-> callback(choice.target))
+    )
+  
+  elem # return the element
+  
+
+
+
 infoHandler = (node, accuData, workflow, callback) ->
   elem = $('<div>').html(template)
   
@@ -44,7 +67,8 @@ infoHandler = (node, accuData, workflow, callback) ->
 
 
 handlers = {
-  "inform": infoHandler
+  "inform": infoHandler,
+  "choice": choiceHandler
     
 }
 

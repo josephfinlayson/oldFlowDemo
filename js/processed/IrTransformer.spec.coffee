@@ -59,4 +59,21 @@ describe "IR transformer", ->
       elem = Processed.NodeToHtml(node, null, null, callbacks.simple)
       clickOn($(elem).find(".target")[0])
       expect(callbacks.simple).toHaveBeenCalledWith("TEST_TARGET")
-   
+
+  describe "For choice nodes", ->
+    node = {
+      type: "choice",
+      title: "TEST_TITLE",
+      text: "TEST_TEXT",
+      choices: [
+        {text: "TEXT_A", target:"TARGET_A"},
+        {text: "TEXT_B", target:"TARGET_B"},
+        {text: "TEXT_C", target:"TARGET_C"}
+      ]
+    }
+    it "Will create three links when provided with three choices", ->
+      elem = Processed.NodeToHtml(node, null, null, null)
+      expect($(elem).find(".target").length).toBe(3)
+      
+  
+  
