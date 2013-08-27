@@ -288,5 +288,5 @@ function submitter(target) {
 }
 
 $(document).ready(function () {
-    callback_director("pet-ownership");
+    callback_director(flow._config.start);
 });
