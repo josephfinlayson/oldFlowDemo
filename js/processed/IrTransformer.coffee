@@ -22,13 +22,16 @@ template = """
 
 """
 
+infoHandler = (node, accuData, workflow) ->
+  elem = $('<div>').html(template)
+  elem.find(".stage-title").text(node.title)
+  elem.find(".stage-text").text(node.text)
+  elem
+  
+
 
 handlers = {
-  "info": (node, accuData, workflow) ->
-    elem = $('<div>').html(template)
-    elem.find(".stage-title").text(node.title)
-    elem.find(".stage-text").text(node.text)
-    elem
+  "info": infoHandler
     
 }
 
