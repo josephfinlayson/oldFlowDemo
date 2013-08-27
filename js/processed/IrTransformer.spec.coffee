@@ -34,16 +34,17 @@ describe "IR transformer", ->
     expect(Processed.NodeToHtml(null, null, null)).toEqual(jasmine.any(HTMLElement))
 
   describe "For any type of nodes", ->
+    node = {type: "foo", title: "TEST TITLE", text: "TEST TEXT"}
+    elem = Processed.NodeToHtml(node, null, null)
+    
     it "Will render the node title in the '.stage-title' element", ->
-      node = {type: "foo", title: "TEST TITLE"}
-      expect( $(Processed.NodeToHtml(node, null, null)).find(".stage-title").text() ).toEqual("TEST TITLE")
+      expect( $(elem).find(".stage-title").text() ).toEqual("TEST TITLE")
 
     it "Will render the node text in the '.stage-text' element", ->
-      node = {type: "foo", text: "TEST TEXT"}
-      expect( $(Processed.NodeToHtml(node, null, null)).find(".stage-text").text() ).toEqual("TEST TEXT")
+      expect( $(elem).find(".stage-text").text() ).toEqual("TEST TEXT")
 
   describe "For inform nodes", ->
-    node = null
+    node = {type: "inform", title: "TEST TITLE", text: "TEST TEXT", target: "TEST_TARGET"}
     callbacks = null
 
     beforeEach ->
@@ -53,7 +54,6 @@ describe "IR transformer", ->
       }
       spyOn(callbacks, "simple")
 
-      node = {type: "inform", title: "TEST TITLE", text: "TEST TEXT", target: "TEST_TARGET"}
     
     it "Clicking in the '.target' element will call the callback with the target name", ->
       elem = Processed.NodeToHtml(node, null, null, callbacks.simple)
