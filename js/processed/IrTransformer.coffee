@@ -23,6 +23,7 @@ template = """
 """
 
 
+# Convert a choice node and environment into an HTMLElement
 choiceHandler = (node, accuData, workflow, callback) ->
   elem = $('<div>').html(template)
   
@@ -44,32 +45,22 @@ choiceHandler = (node, accuData, workflow, callback) ->
   
 
 
+# Convert an inform node to a choice node
+inform_to_choice = (node) ->
+  node = $.extend(true, {}, node)
+  node.type = "choice"
+  node.choices = [{text: "Continue", target: node.target}]
+  delete node.target
+  node
 
-infoHandler = (node, accuData, workflow, callback) ->
-  elem = $('<div>').html(template)
-  
-  if node.title? 
-    elem.find(".stage-title").text(node.title)
-  
-  if node.text? 
-    elem.find(".stage-text").text(node.text)
-  
-  if node.target? 
-    elem.find(".stage-choices").append(
-      $('<a>')
-        .addClass("target")
-        .text("Continue")
-        .click(-> callback(node.target))
-    )
-  
-  elem # return the element
-  
+# Convert an inform node and environment into an HTMLElement
+informHandler = (node, accuData, workflow, callback) ->
+  choiceHandler(inform_to_choice(node), accuData, workflow, callback)
 
 
 handlers = {
-  "inform": infoHandler,
+  "inform": informHandler,
   "choice": choiceHandler
-    
 }
 
 
