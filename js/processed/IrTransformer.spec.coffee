@@ -69,11 +69,12 @@ describe "IR transformer", ->
       title: "TEST_TITLE",
       text: "TEST_TEXT",
       choices: [
-        {text: "A", target:"TARGET_A"},
-        {text: "B", target:"TARGET_B"},
-        {text: "C", target:"TARGET_C"}
+        {text: "A", target:"TARGET_A", 'class': "CLASS_A"},
+        {text: "B", target:"TARGET_B", 'class': "CLASS_B"},
+        {text: "C", target:"TARGET_C", 'class': "CLASS_C"}
       ]
     }
+    
     it "Will create three links when provided with three choices", ->
       elem = Processed.NodeToHtml(node, null, null, doNothing)
       expect($(elem).find(".target").length).toBe(3)
@@ -90,5 +91,11 @@ describe "IR transformer", ->
       clickOn(a_target)
       expect(callbacks.simple).toHaveBeenCalledWith("TARGET_"+target_text)
       
-  
+    it "Will apply a class to targets if it is provided", ->
+      elem = Processed.NodeToHtml(node, null, null, doNothing)
+      a_target = $(elem).find(".target")[1]
+      target_text = $(a_target).text()
+      expect($(a_target).hasClass("CLASS_"+target_text)).toBeTruthy()
+
+      
   
