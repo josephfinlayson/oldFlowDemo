@@ -13,6 +13,9 @@ eventFire = (el, etype) ->
 clickOn = (el) ->
   eventFire(el, "click")
 
+# Useful to avoid error messages about undefined callbacks.
+doNothing = () -> null
+
 ###
  Tests
 ###
@@ -31,11 +34,11 @@ describe "IR transformer", ->
     expect(Processed.NodeToHtml).toBeDefined()
   
   it "Transforms input to an HTMLElement", ->
-    expect(Processed.NodeToHtml(null, null, null)).toEqual(jasmine.any(HTMLElement))
+    expect(Processed.NodeToHtml(null, null, null, doNothing)).toEqual(jasmine.any(HTMLElement))
 
   describe "For any type of nodes", ->
     node = {type: "foo", title: "TEST TITLE", text: "TEST TEXT"}
-    elem = Processed.NodeToHtml(node, null, null)
+    elem = Processed.NodeToHtml(node, null, null, doNothing)
     
     it "Will render the node title in the '.stage-title' element", ->
       expect( $(elem).find(".stage-title").text() ).toEqual("TEST TITLE")
@@ -72,7 +75,7 @@ describe "IR transformer", ->
       ]
     }
     it "Will create three links when provided with three choices", ->
-      elem = Processed.NodeToHtml(node, null, null, null)
+      elem = Processed.NodeToHtml(node, null, null, doNothing)
       expect($(elem).find(".target").length).toBe(3)
 
     it "Will not mix up targets for multiple nodes", ->
