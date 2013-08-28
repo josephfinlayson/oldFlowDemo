@@ -34,11 +34,19 @@ choiceHandler = (node, accuData, workflow, callback) ->
     elem.find(".stage-text").text(node.text)
   
   for choice in node.choices
+
+    if callback? and choice.target?
+      clickCallback = do ( target = choice.target ) ->
+        callback(target)
+    else
+      clickCallback = null
+      console.error("Error processing choice node (%o). Missing target for choice!", node)
+
     elem.find(".stage-choices").append(
       $('<a>')
         .addClass("target")
         .text(choice.text)
-        .click(-> callback(choice.target))
+        .click(clickCallback)
     )
   
   elem # return the element

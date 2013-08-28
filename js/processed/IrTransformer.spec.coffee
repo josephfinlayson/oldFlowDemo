@@ -66,14 +66,26 @@ describe "IR transformer", ->
       title: "TEST_TITLE",
       text: "TEST_TEXT",
       choices: [
-        {text: "TEXT_A", target:"TARGET_A"},
-        {text: "TEXT_B", target:"TARGET_B"},
-        {text: "TEXT_C", target:"TARGET_C"}
+        {text: "A", target:"TARGET_A"},
+        {text: "B", target:"TARGET_B"},
+        {text: "C", target:"TARGET_C"}
       ]
     }
     it "Will create three links when provided with three choices", ->
       elem = Processed.NodeToHtml(node, null, null, null)
       expect($(elem).find(".target").length).toBe(3)
+
+    it "Will not mix up targets for multiple nodes", ->
+      callbacks = {
+        simple: (target) ->
+          null
+      }
+      spyOn(callbacks, "simple")
+      elem = Processed.NodeToHtml(node, null, null, callbacks.simple)
+      a_target = $(elem).find(".target")[1]
+      target_text = $(a_target).text()
+      clickOn(a_target)
+      expect(callbacks.simple).toHaveBeenCalledWith("TARGET_"+target_text)
       
   
   
