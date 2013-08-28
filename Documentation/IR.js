@@ -124,7 +124,8 @@ var workflow = {
       * There must be one or more choice for this node to be valid.
       */
      choices: [
-       {text: "A slippery water dweller", target:"fish"},
+       /* Note how we can use the optional 'class' attribute for each choice */
+       {text: "A slippery water dweller", target:"fish", 'class':'foo' },
        {text: "A furry quadruped", target:"furry-quad"},
        {text: "A more exotic creature", target:"exotic"}
      ]
