@@ -1,0 +1,12 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+   Joseph Finlayson -- Project Manager -- @J4lf
+   Juste Paulauskaite -- Designer -- @jpaulausk1
+   Brice Fernandes -- Developer -- @fractallambda
+
+# TECHNOLOGY COLOPHON
+
+    Javascript, HTML5, CSS3
