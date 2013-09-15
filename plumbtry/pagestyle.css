@@ -1,0 +1,46 @@
+*{box-sizing:border-box;}
+
+
+
+#menu{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  background-color:#333;
+  height:40px;
+  padding:5px;
+  z-index:50;
+}
+#menu #items{
+  margin-top:5px;
+  float:left;
+}
+#menu #items a{
+  background-color:white;
+  border-radius:5px;
+  padding:5px;
+  margin:5px;
+  text-decoration:none;
+}
+#menu #items a:hover{
+  cursor: pointer;
+}
+#menu #commands {
+  margin-top:5px;
+  float:right;
+}
+#menu #commands a{
+  background-color:white;
+  border-radius:5px;
+  padding:5px;
+  margin:5px;
+  text-decoration:none;
+}
+#menu #commands a:hover{
+  cursor: pointer;
+}
+
+#flowcontainer {
+ margin-top:40px;
+}

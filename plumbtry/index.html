@@ -1,16 +1,19 @@
 <!doctype html>
 <html>
 	<head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pagestyle.css">
+    <link rel="stylesheet" href="flowstyle.css">
   </head>
   <body>
-    <div id="main">
-      <div id="flowcontainer" >
+    <div id="menu">
+      <div id="items"></div>
+      <div id="commands">
       </div>
-      <div id="foo">hello</div>
     </div>
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js'></script>
+    <div id="flowcontainer" >
+    </div>
+    <script type='text/javascript' src='./jquery.min.js'></script>
+    <script type='text/javascript' src='./jquery-ui.min.js'></script>
     <script type='text/javascript' src='./coffee-script.js'></script>
     <script type='text/javascript' src='./uuid.js'></script>
     <script type='text/javascript' src='./jquery.jsPlumb-1.5.2-min.js'></script>
@@ -20,10 +23,7 @@
     <script type="text/coffeescript" src="mudular.coffee"></script>
     <script type="text/coffeescript" src="model.coffee"></script>
     <script type="text/coffeescript" src="app.coffee"></script>
-    <script>
-      $(function(){
-        $("#foo").resizable().draggable().css("border", "1px solid black");
-      });
-    </script>
+    <script type="text/coffeescript" src="nodemenu.coffee"></script>
+    <script type="text/coffeescript" src="commands.coffee"></script>
   </body>
 </html>

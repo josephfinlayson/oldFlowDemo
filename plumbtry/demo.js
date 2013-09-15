@@ -1,21 +1,4 @@
 
-
-function newBox(myID, containerID, myClass){
-  var box = $("<div>")
-    .attr('id', myID)
-    .addClass(myClass)
-    .html("<p>hello</p>")
-    .css("top", "10em").css("left","10em");
-  
-  $(containerID).append(box);
-  
-  jsPlumb.draggable(myID);
-
-    
-  jsPlumb.addEndpoint(myID/*, sourceEndpoint, { anchor:"BottomCenter", uuid:myID+"BottomCenter" }*/);						
-
-}
-
 	
 function initapp() {
 			jsPlumb.importDefaults({
@@ -60,7 +43,8 @@ function initapp() {
 			// listen for clicks on connections, and offer to delete connections on click.
 			//
 			jsPlumb.bind("click", function(conn, originalEvent) {
-				if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
+				//if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
+				if (confirm("Delete this connection?"))
 					jsPlumb.detach(conn); 
 			});	
 			
