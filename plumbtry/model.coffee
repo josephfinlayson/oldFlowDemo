@@ -8,6 +8,8 @@ class Processed.FlowNode
     @id = uuid.v1()
     @inlets = []
     @outlets = []
+    @myTitle = ""
+    @myDesc = ""
     @elem = $("<div>")
       .attr('id', @id)
       .addClass("FlowNode").addClass("_box")
@@ -22,6 +24,17 @@ class Processed.FlowNode
     
     jsPlumb.draggable(@id)
     @elem.resizable()
+
+  title: (title) ->
+    if title?
+      @myTitle = title
+    @elem.html("<p>"+@myTitle+"</p>")
+    @myTitle
+
+  description: (desc) ->
+    if desc?
+      @myDesc = desc
+    @myDesc
 
     
   addSource: (name) ->
@@ -46,7 +59,6 @@ class Processed.InformNode extends Processed.FlowNode
     super container, x, y
     @addSource "out"
     @addTarget "in"
-    @elem.html("<p>InformNode</p>")
 
 class Processed.StartNode extends Processed.FlowNode
   constructor: (container, x=50, y=50) ->
