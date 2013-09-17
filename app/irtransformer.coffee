@@ -29,7 +29,7 @@ template = """
 
 #takes workflow - > renders page
 Processed.handleWorkflow = (workflow, elementToModify = "body") ->
- html =  Processed.NodeToHtml(workflow[workflow._config.start], null, workflow, pageRenderer)
+ html =  Processed.NodeToHtml(workflow[workflow._config.start], null, workflow, pageRenderer, elementToModify)
  $(elementToModify).html(html)
 
 pageRenderer = (node, accuData, workflow, callback, elementToModify) ->
@@ -37,7 +37,7 @@ pageRenderer = (node, accuData, workflow, callback, elementToModify) ->
    $(elementToModify).html(html)
 
 choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
-  
+
   elem = $('<div>').html(template)
   
   if node.title? 
@@ -49,7 +49,7 @@ choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
   for choice in node.choices
     if callback? and choice.target?
       clickCallback =  ( ) ->
-        callback(workflow[choice.target], null, workflow, callback)
+        callback(workflow[choice.target], null, workflow, callback, elementToModify)
     else
       clickCallback = null
       console.error("Error processing choice node (%o). Missing target for choice!", node)
@@ -87,12 +87,10 @@ end_to_choice = (node) ->
 
 # Convert an inform node and environment into an HTMLElement
 informHandler = (node, accuData, workflow, callback, elementToModify) ->
-  # node = workflow[node]
   choiceHandler(inform_to_choice(node), accuData, workflow, callback, elementToModify)
 
 # Convert an end node and environment into an HTMLElement
 endHandler = (node, accuData, workflow, callback, elementToModify) ->
-  # node = workflow[node]
   choiceHandler(inform_to_choice(node), accuData, workflow, callback, elementToModify)
 
 
@@ -105,14 +103,12 @@ handlers = {
 
 
 Processed.NodeToHtml = (node, accuData, workflow, callback, elementToModify) ->    
-  console.log(node)
   if not node?
     elem = $('<div>').html(template)
     console.error("Node not defined!")
   
   else if node.type? and node.type of handlers
     elem = handlers[node.type](node, accuData, workflow, callback, elementToModify)
-    console.log(elem)
   
   else if node.type?
     console.error("Treating unknown node type '%s' as 'inform': %o", node.type, node)
