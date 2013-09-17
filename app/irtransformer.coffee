@@ -26,15 +26,15 @@ template = """
 # Convert a choice node and environment into an HTMLElement
 
 
-
 #takes workflow - > renders page
 Processed.handleWorkflow = (workflow, elementToModify = "body") ->
- html =  Processed.NodeToHtml(workflow[workflow._config.start], null, workflow, pageRenderer, elementToModify)
- $(elementToModify).html(html)
+  
+  pageRenderer = (node, accuData, workflow, callback, elementToModify) ->
+     html = Processed.NodeToHtml(node, null, workflow, callback, elementToModify)
+     $(elementToModify).html(html)
+   
+  pageRenderer(workflow[workflow._config.start], null, workflow, pageRenderer, elementToModify)
 
-pageRenderer = (node, accuData, workflow, callback, elementToModify) ->
-   html = Processed.NodeToHtml(node, null, workflow, callback, elementToModify)
-   $(elementToModify).html(html)
 
 choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
 
@@ -119,5 +119,6 @@ Processed.NodeToHtml = (node, accuData, workflow, callback, elementToModify) ->
     console.error("Invalid node object ", node)
   
   # we return the 0th elem because we don't want to return a jQuery object
+  # console.log(elem)
   elem[0]
   
