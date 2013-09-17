@@ -29,14 +29,14 @@ template = """
 #takes workflow - > renders page
 Processed.handleWorkflow = (workflow, elementToModify = "body") ->
   
-  pageRenderer = (node, accuData, workflow, callback, elementToModify) ->
-     html = Processed.NodeToHtml(node, null, workflow, callback, elementToModify)
+  pageRenderer = (node, accuData, workflow, callback) ->
+     html = Processed.NodeToHtml(node, null, workflow, callback)
      $(elementToModify).html(html)
    
-  pageRenderer(workflow[workflow._config.start], null, workflow, pageRenderer, elementToModify)
+  pageRenderer(workflow[workflow._config.start], null, workflow, pageRenderer)
 
 
-choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
+choiceHandler = (node, accuData, workflow, callback) ->
 
   elem = $('<div>').html(template)
   
@@ -49,7 +49,7 @@ choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
   for choice in node.choices
     if callback? and choice.target?
       clickCallback =  ( ) ->
-        callback(workflow[choice.target], null, workflow, callback, elementToModify)
+        callback(workflow[choice.target], null, workflow, callback)
     else
       clickCallback = null
       console.error("Error processing choice node (%o). Missing target for choice!", node)
@@ -69,6 +69,7 @@ choiceHandler = (node, accuData, workflow, callback, elementToModify) ->
   
 
 
+
 # Convert an inform node to a choice node
 inform_to_choice = (node) ->
   node = $.extend(true, {}, node)
@@ -86,12 +87,12 @@ end_to_choice = (node) ->
   node
 
 # Convert an inform node and environment into an HTMLElement
-informHandler = (node, accuData, workflow, callback, elementToModify) ->
-  choiceHandler(inform_to_choice(node), accuData, workflow, callback, elementToModify)
+informHandler = (node, accuData, workflow, callback) ->
+  choiceHandler(inform_to_choice(node), accuData, workflow, callback)
 
 # Convert an end node and environment into an HTMLElement
-endHandler = (node, accuData, workflow, callback, elementToModify) ->
-  choiceHandler(inform_to_choice(node), accuData, workflow, callback, elementToModify)
+endHandler = (node, accuData, workflow, callback) ->
+  choiceHandler(inform_to_choice(node), accuData, workflow, callback)
 
 
 
@@ -102,17 +103,17 @@ handlers = {
 }
 
 
-Processed.NodeToHtml = (node, accuData, workflow, callback, elementToModify) ->    
+Processed.NodeToHtml = (node, accuData, workflow, callback) ->    
   if not node?
     elem = $('<div>').html(template)
     console.error("Node not defined!")
   
   else if node.type? and node.type of handlers
-    elem = handlers[node.type](node, accuData, workflow, callback, elementToModify)
+    elem = handlers[node.type](node, accuData, workflow, callback)
   
   else if node.type?
     console.error("Treating unknown node type '%s' as 'inform': %o", node.type, node)
-    elem = handlers["inform"](node, accuData, workflow, callback, elementToModify)
+    elem = handlers["inform"](node, accuData, workflow, callback)
   
   else
     elem = $('<div>').html(template)
