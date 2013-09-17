@@ -5,8 +5,9 @@
    ========================================================================== */
 
 
-@import url(http://fonts.googleapis.com/css?family=Text+Me+One);
+/*@import url(http://fonts.googleapis.com/css?family=Text+Me+One);
 @import url(http://fonts.googleapis.com/css?family=Fredericka+the+Great);
+*/
 * {box-sizing:border-box;}
 
 body, html, div{
@@ -17,6 +18,7 @@ body, html, div{
 html,body{
   font-family:Helevetica, Arial, sans-serif;
   height:100%;
+  /*overflow-x:hidden;*/
 }
 
 
@@ -26,6 +28,7 @@ html,body{
   body {
   background: url('/img/processed-logo-background1.png') no-repeat right 90%;
   background-size: 78%;
+  overflow-x: hidden; 
     }
 
 
@@ -34,7 +37,7 @@ html,body{
 #processed-video {
 	padding: 10px;
 	border: 10px solid transparent;
-	/*margin: 1.5em;*/
+	margin: 1.5em;
 }
 
 
@@ -110,124 +113,15 @@ html,body{
 }
 
 
-
-
 /*Footer*/
 footer p{
   display: inline;
 }
+
 #logo-footer{  
   height: 1.5em;
   margin-bottom: 0.5em;
 }
-
-
-
-/*
- * app styles
- */
-#container{
-  width:100%;
-  min-height:100%;
-  height:3500px;
-  background-color:white;
-  margin-top:40px;
-}
-
-.item{
-  fill: #123456;
-  stroke: #123456;
-  stroke-width: 1;
-  fill-opacity:1;
-}
-.port{
-  fill:#ffffff;
-  stroke: #123456;
-  stroke-width: 2;
-  fill-opacity:1;
-}
-.nport{
-  fill:#ff0000;
-}
-.yport{
-  fill:#00ff00;
-}
-
-#ctrlbar{
-  position:fixed;
-  width:100%;
-  left:0px;
-  top:0px;
-  height:40px;
-  background-color: #444;
-  padding:10px;
-  z-index:1000;
-}
-
-#leftbar{float:left}
-#rightbar{float:right}
-
-.btn{
-  padding:5px;
-  border-radius:5px; 
-  margin:0 5px;
-  cursor:pointer;
-}
- 
-.choice{
-  color:white;
-  background-color:#123456;
-}
-
-.selected{
-  color:#123456;
-  background-color:white;
-}
-.save{
-  color:white;
-  background-color:green;
-}
-.exec{
-  color:white;
-  background-color:red;
-}
-.export{
-  color:white;
-  background-color:black;
-}
-
-#hintbox{
-  position:fixed;
-  color:white;
-  bottom:0px;
-  right:50px;
-  width:300px;
-}
-#hintbox #puller{
-  text-align:center;
-  padding:5px;
-  font-size:small;
-  background:#222;
-  cursor:pointer;
-  border-top-left-radius:15px;
-  border-top-right-radius:15px;
-}
-#hintbox #hints{
-  background-color:rgba(0,0,0,0.7); 
-  font-size:small;
-  padding:10px;
-}
-.keys{
-  background-color:black;
-  border-radius:3px;
-  padding:3px;
-}
-
-
-
-
-
-
 
 
 
