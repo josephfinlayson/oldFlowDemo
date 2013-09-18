@@ -2,28 +2,26 @@
   Jquery Validation using jqBootstrapValidation
 */
 $(function() {
-
- $("input,textarea").jqBootstrapValidation(
-    {
-     preventSubmit: true,
-     submitError: function($form, event, errors) {
-      // something to have when submit produces an error ?
-      // Not decided if I need it yet
-     },
-     submitSuccess: function($form, event) {
+  var messages = new Firebase('https://rioinfo.firebaseio.com/messages');
+  
+  $("input,textarea").jqBootstrapValidation({
+    preventSubmit: true,
+    submitError: function($form, event, errors) {
+    },
+    
+    submitSuccess: function($form, event) {
       event.preventDefault(); // prevent default submit behaviour
-       // get values from FORM
-        var name = $("input#name").val();  
-        var email = $("input#email").val(); 
-        var message = $("textarea#message").val();
-        var firstName = name; // For Success/Failure Message
-        // Check for white space in name for Success/Fail message
-        if (firstName.indexOf(' ') >= 0) {
-         firstName = name.split(' ').slice(0, -1).join(' ');
-        }        
-
-        // var leads = new Firebase('https://rioinfo.firebaseio.com/leads');
-        // leads.push(name, email, message);
+      // get values from FORM
+      var name = $("input#name").val();  
+      var email = $("input#email").val(); 
+      var message = $("textarea#message").val();
+      var firstName = name; // For Success/Failure Message
+      // Check for white space in name for Success/Fail message
+      if (firstName.indexOf(' ') >= 0) {
+        firstName = name.split(' ').slice(0, -1).join(' ');
+      }        
+      console.log("pushing to firebase");
+      messages.push({name:name, email:email, msg:message});
     
         // Success message
         $('#success').html("<div class='alert alert-success'>");
