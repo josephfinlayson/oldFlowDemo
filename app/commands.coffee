@@ -10,7 +10,7 @@ commands = [
   },
   {
     name: "execute",
-    callback: ( -> alert("execute")),
+    callback: ( -> console.log(Processed.handleWorkflow( Processed.getWorkflow() ))),
     color: "white",
     background:"red"
   },
